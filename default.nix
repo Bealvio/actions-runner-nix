@@ -151,6 +151,7 @@ pkgs.dockerTools.streamLayeredImage {
     dockerTools.usrBinEnv
     dockerTools.caCertificates
     gnugrep
+    gnused
     glibc
     cacert.out
     openssl
