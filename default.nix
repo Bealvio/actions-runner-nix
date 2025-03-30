@@ -14,7 +14,6 @@ let
     }
     trap 'cleanup; exit 130' INT
     trap 'cleanup; exit 143' TERM
-    nix-daemon &
     run.sh & wait $!
   '';
   sources = import ./npins;
@@ -49,6 +48,7 @@ pkgs.dockerTools.streamLayeredImage {
     gnugrep
     glibc
     cacert
+    openssl
     github-runner
     lix
     npins
