@@ -2,7 +2,7 @@
   pkgs ? import <nixpkgs> { },
 }:
 let
-  imageName = "zot.bealv.io/action-runner-nix";
+  imageName = "zot.bealv.io/public/action-runner-nix";
   entrypoint = pkgs.writeShellScriptBin "entrypoint.sh" ''
     export ORGANIZATION=$ORGANIZATION
     export ACCESS_TOKEN=$ACCESS_TOKEN
@@ -18,14 +18,14 @@ let
     run.sh & wait $!
   '';
   sources = import ./npins;
-  inherit (sources.runner) version;
+  # inherit (sources.runner) version;
   github-runner = pkgs.github-runner.overrideAttrs (oldAttrs: {
     src = sources.runner;
   });
 in
 pkgs.dockerTools.streamLayeredImage {
   name = "${imageName}";
-  tag = "${version}";
+  created = "now";
   fakeRootCommands = "
     mkdir -p home/runner nix/store tmp nix/var/nix
     chown 1001:1001 -R home/runner
@@ -56,6 +56,9 @@ pkgs.dockerTools.streamLayeredImage {
     git
     jq
     xz
+    gzip
+    gawk
+    gnutar
     entrypoint
   ];
   config = {
