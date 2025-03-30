@@ -81,6 +81,8 @@ pkgs.dockerTools.streamLayeredImage {
     })
     (pkgs.writeTextDir "etc/nix/nix.conf" ''
       experimental-features = nix-command flakes
+      substituters = https://s3.didactiklabs.io/nix-cache https://hyprland.cachix.org https://cache.nixos.org/
+      trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= didactiklabs-nixcache:PxLKN0+ZkP07M8g8/B6xbP6A4MYpqQg6LH7V3muiy/0= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
     '')
     (pkgs.writeTextDir "etc/sudoers" ''
       root     ALL=(ALL:ALL)    SETENV: ALL
