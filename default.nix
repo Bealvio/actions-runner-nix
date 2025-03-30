@@ -162,6 +162,9 @@ pkgs.dockerTools.streamLayeredImage {
     gzip
     gawk
     gnutar
+    kustomize
+    yq-go
+    pkgs.kubectl
     entrypoint
   ];
   config = {
