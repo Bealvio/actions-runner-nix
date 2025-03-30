@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
 jobs:
-  updatecli:
+  buildpush:
     runs-on: 'bealv-runners'
     steps:
       - name: Checkout
