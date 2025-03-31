@@ -19,8 +19,9 @@ let
     run.sh & wait $!
   '';
   sources = import ./npins;
-  # inherit (sources.runner) version;
+  inherit (sources.runner) version;
   github-runner = pkgs.github-runner.overrideAttrs (oldAttrs: {
+    inherit version;
     src = sources.runner;
   });
   buildOciStream = pkgs.dockerTools.streamLayeredImage {
@@ -181,6 +182,6 @@ let
   };
 in
 {
-  inherit buildOciStream;
+  inherit buildOciStream github-runner;
   closureInfo = pkgs.closureInfo { rootPaths = [ buildOciStream ]; };
 }
