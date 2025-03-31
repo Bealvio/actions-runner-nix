@@ -21,7 +21,7 @@ let
   sources = import ./npins;
   inherit (sources.runner) version;
   github-runner = pkgs.github-runner.overrideAttrs (oldAttrs: {
-    inherit version;
+    version = builtins.replaceStrings [ "v" ] [ "" ] version;
     src = sources.runner;
   });
   buildOciStream = pkgs.dockerTools.streamLayeredImage {
