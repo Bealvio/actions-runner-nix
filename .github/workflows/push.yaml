@@ -38,7 +38,7 @@ jobs:
           version: latest
       - name: 'Sync images'
         run: |
-          $(nix-build .) > oci.tar
+          $(nix-build . -A buildOciStream) > oci.tar
           IMAGE_FULLNAME=$(tar -axf oci.tar manifest.json -O |jq -r '.[0].RepoTags[0]')
           skopeo --version
           skopeo copy --dest-creds \
