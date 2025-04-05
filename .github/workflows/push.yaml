@@ -37,7 +37,7 @@ jobs:
           $(nix-build . -A buildOciStream) > oci.tar
           IMAGE_FULLNAME=$(tar -axf oci.tar manifest.json -O |jq -r '.[0].RepoTags[0]')
           skopeo --version
-          skopeo copy --dest-creds \
+          skopeo copy --insecure-policy --dest-creds \
           ${{ env.REGISTRY_USER }}:${{ env.REGISTRY_PASSWORD }} \
           docker-archive:oci.tar \
           docker://$IMAGE_FULLNAME
