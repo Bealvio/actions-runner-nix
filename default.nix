@@ -163,6 +163,7 @@ let
       jq
       xz
       gzip
+      skopeo
       gawk
       gnutar
       kustomize

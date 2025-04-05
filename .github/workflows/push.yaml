@@ -32,10 +32,6 @@ jobs:
         with:
           app-id: ${{ env.APP_ID }}
           private-key: ${{ env.APP_PRIVATE_KEY }}
-      - name: 'Set up skopeo'
-        uses: warjiang/setup-skopeo@main
-        with:
-          version: latest
       - name: 'Sync images'
         run: |
           $(nix-build . -A buildOciStream) > oci.tar
